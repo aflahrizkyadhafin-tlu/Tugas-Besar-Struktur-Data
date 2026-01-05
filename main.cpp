@@ -2,7 +2,6 @@
 #include "tiket.h"
 #include "fnb.h"
 #include <string>
-#include <limits>
 #include <iostream>
 using namespace std;
 
@@ -378,7 +377,7 @@ void tampilanKelolaFilm(listFilm &L)
     int pilihanKelolaFilm = -1;
     while (pilihanKelolaFilm != 0)
     {
-        cout << "==== Bioskop H. Tohirin ====" << endl
+        cout << "====== BIOSKOP H. TOHIRIN ======" << endl
              << "1. Tampilkan seluruh jadwal bioskop" << endl
              << "2. Tambah jadwal film" << endl
              << "3. Ganti informasi film" << endl

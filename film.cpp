@@ -66,6 +66,7 @@ void editFilm(listFilm &L, string idFilm, string judul, string studio, int duras
         N->infoFilm.tahunTerbit = tahunTerbit;
         N->infoFilm.kapasitasPenonton = kapasitasPenonton;
         N->infoFilm.hargaTiket = hargaTiket;
+        deleteListTiket(N->daftarTiket);
         cout << "Data film dengan id " << idFilm << " telah berhasil di update" << endl;
     }
     else
@@ -146,32 +147,35 @@ void tampilkanInfoSeluruhFilm(listFilm L)
     }
     else
     {
-        cout << "Film yang sedang tayang hari ini : " << endl;
+        cout << endl
+             << "====== JADWAL FILM HARI INI ======" << endl;
 
         adrFilm temp = L.head;
         while (temp != Nil)
         {
             cout << endl
-                 << "ID Film : " << temp->infoFilm.idFilm << endl
-                 << "Judul : " << temp->infoFilm.judul << endl
-                 << "Studio : " << temp->infoFilm.studio << endl
-                 << "Durasi : " << temp->infoFilm.durasi << endl
-                 << "Tahun Terbit : " << temp->infoFilm.tahunTerbit << endl
+                 << "ID Film            : " << temp->infoFilm.idFilm << endl
+                 << "Judul              : " << temp->infoFilm.judul << endl
+                 << "Studio             : " << temp->infoFilm.studio << endl
+                 << "Durasi             : " << temp->infoFilm.durasi << endl
+                 << "Tahun Terbit       : " << temp->infoFilm.tahunTerbit << endl
                  << "Kapasitas Penonton : " << temp->infoFilm.kapasitasPenonton << endl
-                 << "Harga Tiket : " << temp->infoFilm.hargaTiket << endl;
+                 << "Harga Tiket        : " << temp->infoFilm.hargaTiket << endl;
             temp = temp->next;
         }
+        cout << endl;
     }
 }
 
 void tampilkanInfoFilm(adrFilm N)
 {
-    cout
-        << "ID Film : " << N->infoFilm.idFilm << endl
-        << "Judul : " << N->infoFilm.judul << endl
-        << "Studio : " << N->infoFilm.studio << endl
-        << "Durasi : " << N->infoFilm.durasi << endl
-        << "Tahun Terbit : " << N->infoFilm.tahunTerbit << endl
-        << "Penonton : " << countTiket(N->daftarTiket) << " / " << N->infoFilm.kapasitasPenonton << endl
-        << "Harga Tiket : " << N->infoFilm.hargaTiket << endl;
+    cout << "======== FILM ========" << endl
+         << "ID Film      : " << N->infoFilm.idFilm << endl
+         << "Judul        : " << N->infoFilm.judul << endl
+         << "Studio       : " << N->infoFilm.studio << endl
+         << "Durasi       : " << N->infoFilm.durasi << endl
+         << "Tahun Terbit : " << N->infoFilm.tahunTerbit << endl
+         << "Penonton     : " << countTiket(N->daftarTiket) << " / " << N->infoFilm.kapasitasPenonton << endl
+         << "Harga Tiket  : " << N->infoFilm.hargaTiket << endl
+         << endl;
 }
