@@ -88,7 +88,7 @@ void tampilanBeliMakanan(NodeTiket &NTiket)
 
     while (pilihanBeliMakanan != 0)
     {
-        cout << "==== Beli Makanan ====" << endl;
+        cout << "\n==== Beli Makanan ====" << endl;
         cout << "1. Tambah makanan" << endl
              << "2. Lihat Pesanan makanan" << endl
              << "3. Edit makanan" << endl
@@ -96,6 +96,15 @@ void tampilanBeliMakanan(NodeTiket &NTiket)
              << "0. Kembali" << endl;
         cout << "Pilih menu : ";
         cin >> pilihanBeliMakanan;
+        cout << endl;
+
+        if (cin.fail())
+        {
+            cin.clear();
+            cin.ignore();
+            pilihanBeliMakanan = -1;
+            continue;
+        }
 
         switch (pilihanBeliMakanan)
         {
@@ -201,8 +210,8 @@ void tampilanReservasiTiket(listFilm &LFilm)
 {
     int pilihanMenuReservasi = -1;
     adrFilm aFilm = LFilm.head;
-    tampilkanInfoFilm(aFilm);
 
+    tampilkanInfoFilm(aFilm);
     while (pilihanMenuReservasi != 0)
     {
         cout << endl;
@@ -216,6 +225,15 @@ void tampilanReservasiTiket(listFilm &LFilm)
              << "0. Home" << endl;
         cout << "Pilih menu : ";
         cin >> pilihanMenuReservasi;
+        cout << endl;
+
+        if (cin.fail())
+        {
+            cin.clear();
+            cin.ignore();
+            pilihanMenuReservasi = -1;
+            continue;
+        }
 
         switch (pilihanMenuReservasi)
         {
@@ -265,18 +283,22 @@ void tampilanReservasiTiket(listFilm &LFilm)
             }
 
             NodeTiket tiketBaru = allocNodeTiket(idTiket, namaPembeli, jumlahTiket, aFilm);
-            insertFirstTiket(aFilm->daftarTiket, tiketBaru);
+            bool berhasilTerkirim = insertFirstTiket(aFilm->daftarTiket, tiketBaru);
 
-            cout << "\nTiket berhasil ditambahkan!" << endl;
-            cout << "Total Harga: Rp " << (jumlahTiket * aFilm->infoFilm.hargaTiket) << endl;
-
-            string beliMakanan = "tidak";
-            cout << "Beli makanan (ya/tidak) : ";
-            cin >> beliMakanan;
-
-            if (beliMakanan == "ya" || beliMakanan == "Ya" || beliMakanan == "YA")
+            if (berhasilTerkirim)
             {
-                tampilanBeliMakanan(tiketBaru);
+                cout << "\nTiket berhasil ditambahkan!" << endl;
+                cout << "Total Harga: Rp " << (jumlahTiket * aFilm->infoFilm.hargaTiket) << endl;
+
+                cout << endl;
+                string beliMakanan = "tidak";
+                cout << "Beli makanan (ya/tidak) : ";
+                cin >> beliMakanan;
+
+                if (beliMakanan == "ya" || beliMakanan == "Ya" || beliMakanan == "YA")
+                {
+                    tampilanBeliMakanan(tiketBaru);
+                }
             }
 
             break;
@@ -364,6 +386,14 @@ void tampilanKelolaFilm(listFilm &L)
              << "0. Home" << endl;
         cout << "Pilihan menu : ";
         cin >> pilihanKelolaFilm;
+
+        if (cin.fail())
+        {
+            cin.clear();
+            cin.ignore();
+            pilihanKelolaFilm = -1;
+            continue;
+        }
 
         switch (pilihanKelolaFilm)
         {
@@ -480,6 +510,15 @@ void tampilanHome(listFilm &L)
              << "0. Exit" << endl;
         cout << "Pilihan menu : ";
         cin >> pilihanHome;
+        cout << endl;
+
+        if (cin.fail())
+        {
+            cin.clear();
+            cin.ignore();
+            pilihanHome = -1;
+            continue;
+        }
 
         switch (pilihanHome)
         {

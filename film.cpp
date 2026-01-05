@@ -151,14 +151,14 @@ void tampilkanInfoSeluruhFilm(listFilm L)
         adrFilm temp = L.head;
         while (temp != Nil)
         {
-            cout << "ID Film : " << temp->infoFilm.idFilm << endl
+            cout << endl
+                 << "ID Film : " << temp->infoFilm.idFilm << endl
                  << "Judul : " << temp->infoFilm.judul << endl
                  << "Studio : " << temp->infoFilm.studio << endl
                  << "Durasi : " << temp->infoFilm.durasi << endl
                  << "Tahun Terbit : " << temp->infoFilm.tahunTerbit << endl
                  << "Kapasitas Penonton : " << temp->infoFilm.kapasitasPenonton << endl
-                 << "Harga Tiket : " << temp->infoFilm.hargaTiket << endl
-                 << endl;
+                 << "Harga Tiket : " << temp->infoFilm.hargaTiket << endl;
             temp = temp->next;
         }
     }
@@ -166,12 +166,12 @@ void tampilkanInfoSeluruhFilm(listFilm L)
 
 void tampilkanInfoFilm(adrFilm N)
 {
-    cout << "ID Film : " << N->infoFilm.idFilm << endl
-         << "Judul : " << N->infoFilm.judul << endl
-         << "Studio : " << N->infoFilm.studio << endl
-         << "Durasi : " << N->infoFilm.durasi << endl
-         << "Tahun Terbit : " << N->infoFilm.tahunTerbit << endl
-         << "Kapasitas Penonton : " << N->infoFilm.kapasitasPenonton << endl
-         << "Harga Tiket : " << N->infoFilm.hargaTiket << endl
-         << endl;
+    cout
+        << "ID Film : " << N->infoFilm.idFilm << endl
+        << "Judul : " << N->infoFilm.judul << endl
+        << "Studio : " << N->infoFilm.studio << endl
+        << "Durasi : " << N->infoFilm.durasi << endl
+        << "Tahun Terbit : " << N->infoFilm.tahunTerbit << endl
+        << "Penonton : " << countTiket(N->daftarTiket) << " / " << N->infoFilm.kapasitasPenonton << endl
+        << "Harga Tiket : " << N->infoFilm.hargaTiket << endl;
 }

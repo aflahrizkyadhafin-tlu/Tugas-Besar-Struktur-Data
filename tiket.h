@@ -34,10 +34,11 @@ struct listTiket
 
 void createListTiket(listTiket &LTiket);
 NodeTiket allocNodeTiket(string idTiket, string namaPembeli, int jumlahTiket, adrFilm film);
-void insertFirstTiket(listTiket &LTiket, NodeTiket newTiket);
+bool insertFirstTiket(listTiket &LTiket, NodeTiket newTiket);
 void deleteFirstTiket(listTiket &LTiket);
 void deleteTiket(listTiket &LTiket, NodeTiket &NTiket);
 void updateTiket(NodeTiket tiket, string namaPembeliBaru, int totalBiayaBaru);
+int countTiket(listTiket &LTiket);
 void printListTiket(listTiket &LTiket);
 void printTiket(NodeTiket &NTiket);
 void deleteListTiket(listTiket &LTiket);

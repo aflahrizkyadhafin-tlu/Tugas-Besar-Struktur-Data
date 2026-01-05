@@ -22,26 +22,34 @@ NodeTiket allocNodeTiket(string idTiket, string namaPembeli, int jumlahTiket, ad
     return newNode;
 }
 
-void insertFirstTiket(listTiket &LTiket, NodeTiket newTiket)
+bool insertFirstTiket(listTiket &LTiket, NodeTiket newTiket)
 {
-    // cek duplikat ID Tiket
-    if (searchByIdTiket(LTiket, newTiket->infoTiket.idTiket) != nullptr)
+    if (newTiket->infoTiket.film->infoFilm.kapasitasPenonton >= countTiket(newTiket->infoTiket.film->daftarTiket) + newTiket->infoTiket.jumlahTiket)
     {
-        cout << "Tiket dengan ID '" << newTiket->infoTiket.idTiket
-             << "' sudah ada!" << endl;
-        delete newTiket;
-        return;
-    }
+        if (searchByIdTiket(LTiket, newTiket->infoTiket.idTiket) != nullptr)
+        {
+            cout << "Tiket dengan ID '" << newTiket->infoTiket.idTiket
+                 << "' sudah ada!" << endl;
+            delete newTiket;
+            return false;
+        }
 
-    if (LTiket.first == nullptr)
-    {
-        LTiket.first = newTiket;
-        LTiket.last = newTiket;
+        if (LTiket.first == nullptr)
+        {
+            LTiket.first = newTiket;
+            LTiket.last = newTiket;
+        }
+        else
+        {
+            newTiket->next = LTiket.first;
+            LTiket.first = newTiket;
+        }
+        return true;
     }
     else
     {
-        newTiket->next = LTiket.first;
-        LTiket.first = newTiket;
+        cout << "Mohon maaf tiket film " << newTiket->infoTiket.film->infoFilm.judul << " sudah habis" << endl;
+        return false;
     }
 }
 
@@ -128,7 +136,7 @@ void printListTiket(listTiket &LTiket)
         current = current->next;
         count++;
     }
-    cout << "Total Tiket: " << (count - 1) << " buah" << "\n"
+    cout << "Total Tiket: " << countTiket(LTiket) << " buah" << "\n"
          << endl;
 }
 
@@ -179,7 +187,7 @@ int countTiket(listTiket &LTiket)
 
     while (current != nullptr)
     {
-        count++;
+        count += current->infoTiket.jumlahTiket;
         current = current->next;
     }
 
