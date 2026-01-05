@@ -73,11 +73,11 @@ void dataDummy(listFilm &LFilm)
     insertFirstTiket(film1->daftarTiket, tiket3);
 
     // Data Dummy Makanan
-    address makanan1 = alokasi("SNK001", "Popcorn", 15000, 15);
+    address makanan1 = alokasi("SNK001", "Popcorn", 15000, 15, tiket1);
     insertLast(tiket1->infoTiket.makanan, makanan1);
-    address makanan2 = alokasi("SNK002", "T Bone Steak", 250000, 2);
+    address makanan2 = alokasi("SNK002", "T Bone Steak", 250000, 2, tiket1);
     insertLast(tiket1->infoTiket.makanan, makanan2);
-    address makanan3 = alokasi("SNK001", "Popcorn", 15000, 12);
+    address makanan3 = alokasi("SNK001", "Popcorn", 15000, 12, tiket2);
     insertLast(tiket2->infoTiket.makanan, makanan3);
 }
 
@@ -132,7 +132,7 @@ void tampilanBeliMakanan(NodeTiket &NTiket)
                 cout << "Jumlah Makanan : ";
                 cin >> jumlahMakanan;
 
-                address makananBaru = alokasi(idMakanan, namaMakanan, hargaMakanan, jumlahMakanan);
+                address makananBaru = alokasi(idMakanan, namaMakanan, hargaMakanan, jumlahMakanan, NTiket);
                 insertLast(NTiket->infoTiket.makanan, makananBaru);
                 cout << "Makanan berhasil ditambahkan!" << endl;
             }
@@ -167,7 +167,7 @@ void tampilanBeliMakanan(NodeTiket &NTiket)
 
                 deleteMakanan(NTiket->infoTiket.makanan, cariMakanan);
 
-                address makananBaru = alokasi(idMakanan, namaMakanan, hargaMakanan, jumlahMakanan);
+                address makananBaru = alokasi(idMakanan, namaMakanan, hargaMakanan, jumlahMakanan, NTiket);
                 insertLast(NTiket->infoTiket.makanan, makananBaru);
                 cout << "Makanan berhasil diupdate!" << endl;
             }

@@ -1,4 +1,5 @@
 #include "fnb.h"
+#include "tiket.h"
 #include <iostream>
 
 using namespace std;
@@ -21,7 +22,7 @@ void CreateList(linkedlist &List)
     List.last = NULL;
 }
 
-address alokasi(string idMakanan, string namaMakanan, int hargaMakanan, int jumlahMakanan)
+address alokasi(string idMakanan, string namaMakanan, int hargaMakanan, int jumlahMakanan, NodeTiket tiket)
 {
     address Nodebaru = new node;
     Nodebaru->isiList.idMakanan = idMakanan;
@@ -31,6 +32,7 @@ address alokasi(string idMakanan, string namaMakanan, int hargaMakanan, int juml
     Nodebaru->isiList.subtotal = hargaMakanan * jumlahMakanan;
     Nodebaru->next = NULL;
     Nodebaru->prev = NULL;
+    Nodebaru->tiket = tiket;
     return Nodebaru;
 }
 
@@ -38,6 +40,7 @@ void dealokasi(address &node)
 {
     node->next = NULL;
     node->prev = NULL;
+    node->tiket = NULL;
     delete node;
 }
 
@@ -46,6 +49,7 @@ void insertLast(linkedlist &List, address nodeBaru)
     if (isEmpty(List))
     {
         List.first = List.last = nodeBaru;
+        nodeBaru->tiket->infoTiket.totalBiaya += nodeBaru->isiList.subtotal;
     }
     else
     {
@@ -53,6 +57,7 @@ void insertLast(linkedlist &List, address nodeBaru)
             nodeBaru->prev = List.last;
             List.last->next = nodeBaru;
             List.last = nodeBaru;
+            nodeBaru->tiket->infoTiket.totalBiaya += nodeBaru->isiList.subtotal;
         }
     }
 }
@@ -82,6 +87,7 @@ void PrintList(linkedlist List)
 void deleteMakanan(linkedlist &List, address &node)
 {
     string idTerhapus = node->isiList.idMakanan;
+    node->tiket->infoTiket.totalBiaya -= node->isiList.subtotal;
 
     if (List.first == node)
     {

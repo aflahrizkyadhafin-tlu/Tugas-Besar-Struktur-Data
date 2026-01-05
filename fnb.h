@@ -5,6 +5,9 @@
 
 using namespace std;
 
+struct nodeTiket;
+typedef struct nodeTiket *NodeTiket;
+
 struct fnb
 {
     string idMakanan; // Baru diubah jangan lupa tambah di cpp
@@ -22,6 +25,7 @@ struct node
     listMakanan isiList;
     address next;
     address prev;
+    NodeTiket tiket;
 };
 
 struct linkedlist
@@ -32,7 +36,7 @@ struct linkedlist
 
 bool isEmpty(linkedlist List);
 void CreateList(linkedlist &List);
-address alokasi(string idMakanan, string namaMakanan, int hargaMakanan, int jumlahMakanan);
+address alokasi(string idMakanan, string namaMakanan, int hargaMakanan, int jumlahMakanan, NodeTiket tiket);
 void dealokasi(address &node);
 
 void insertLast(linkedlist &List, address nodeBaru);
