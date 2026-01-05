@@ -1,0 +1,3 @@
+- Validasi duplikat data
+- Kapasitas penonton (Belum dipake buat ngebatasin)
+- Styling menu utama
